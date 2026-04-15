@@ -1,27 +1,18 @@
-/* Dados 3 valores, escreva um algoritmo que os informe em uma determinada 
-ordem a partir de um menu de opções:
-
-se opção = 1, escreva os 3 valores em ordem crescente
-se opção = 2, escreva os 3 valores em ordem decrescente
-se opção = 3, escreva os 3 valores de forma que o maior valor fique no meio
-
-Exemplos de entrada	Exemplos de saída
-Valor 1: 5 Valor 2: 3 Valor 3: 2 Opção: 1	2 3 5
-Valor 1: 5 Valor 2: 3 Valor 3: 2 Opção: 2	5 3 2
-Valor 1: 5 Valor 2: 3 Valor 3: 2 Opção: 3	3 5 2 */
-
 import java.util.Scanner;
 
 public class Prova24 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("v1:");
+        System.out.println("insira o valor 1:");
         int v1 = sc.nextInt();
-        System.out.println("v2:");
+        System.out.println("insira o valor 2:");
         int v2 = sc.nextInt();
-        System.out.println("v3:");
+        System.out.println("insira o valor 3:");
         int v3 = sc.nextInt();
-        System.out.println("opcao:");
+        System.out.println("se opção = 1, escreva os 3 valores em ordem crescente\r\n" + //
+                            "se opção = 2, escreva os 3 valores em ordem decrescente\r\n" + //
+                            "se opção = 3, escreva os 3 valores de forma que o maior valor fique no meio\r\n" + //
+                            "Insira a opção:");
         int opcao = sc.nextInt();
 
         int maior,menor,meio;
