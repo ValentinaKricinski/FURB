@@ -1,6 +1,7 @@
-import java.util.Scanner;
+package Uni4;
 
-public class Prova24 {
+import java.util.Scanner;
+public class Uni4Exe24 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("insira o valor 1:");
