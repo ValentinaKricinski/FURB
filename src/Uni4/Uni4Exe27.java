@@ -2,65 +2,68 @@ package Uni4;
 
 import java.util.Scanner;
 
-public class Uni4Exe27 {
+public class Estacionamento {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("insira a hora da chegada: ");
-        int horaChegada = sc.nextInt();
+        int hChegada, mChegada, hSaida, mSaida;
+        int inicio, fim, duracao;
+        int horas, minResto;
+        double preco = 0;
 
-        System.out.println("insira o minuto da chegada: ");
-        int minutoChegada = sc.nextInt();
+        // Entrada
+        System.out.print("insira a hora da chegada: ");
+        hChegada = sc.nextInt();
 
-        System.out.println("insira a hora de saída: ");
-        int horaSaida = sc.nextInt();
+        System.out.print("insira o minuto da chegada: ");
+        mChegada = sc.nextInt();
 
-        System.out.println("insira o minuto de saída: ");
-        int minutoSaida = sc.nextInt();
+        System.out.print("insira a hora de saída: ");
+        hSaida = sc.nextInt();
 
-        if (horaChegada < 0 || horaChegada > 23 || horaSaida < 0 || horaSaida > 23 ||
-            minutoChegada < 0 || minutoChegada > 59 || minutoSaida < 0 || minutoSaida > 59 ||
-            (horaSaida < horaChegada || (horaSaida == horaChegada && minutoSaida < minutoChegada))) {
+        System.out.print("insira o minuto de saída: ");
+        mSaida = sc.nextInt();
 
-            System.out.println("Horario inválido");
-        } else {
+        if (hChegada < 0 || hChegada > 23 ||
+            hSaida < 0 || hSaida > 23 ||
+            mChegada < 0 || mChegada > 59 ||
+            mSaida < 0 || mSaida > 59) {
 
-            int tempoHora = horaSaida - horaChegada;
-            int tempoMinuto = minutoSaida - minutoChegada;
-
-            if (tempoMinuto < 0) {
-                tempoMinuto += 60;
-                tempoHora--;
-            }
-
-            int horasPagar;
-
-            if (tempoHora == 0 && tempoMinuto < 30) {
-                horasPagar = 1;
-            } else if (tempoMinuto >= 30) {
-                horasPagar = tempoHora + 1;
-            } else {
-                horasPagar = tempoHora;
-            }
-
-            if (horasPagar == 0) {
-                horasPagar = 1;
-            }
-
-            double preco = 0;
-
-            if (horasPagar >= 1) preco += 5;
-            if (horasPagar >= 2) preco += 5;
-            if (horasPagar >= 3) preco += 7.5;
-            if (horasPagar >= 4) preco += 7.5;
-
-            if (horasPagar >= 5) {
-                preco += (horasPagar - 4) * 10;
-            }
-
-            System.out.println("Tempo de estacionamento: " + tempoHora + "h " + tempoMinuto + "min");
-            System.out.printf("Preço cobrado = R$%.2f\n", preco);
+            System.out.println("horário inválido");
+            return;
         }
+
+        inicio = hChegada * 60 + mChegada;
+        fim = hSaida * 60 + mSaida;
+
+        if (fim <= inicio) {
+            System.out.println("horário inválido");
+            return;
+        }
+
+        duracao = fim - inicio;
+
+        horas = duracao / 60;
+        minResto = duracao % 60;
+
+        if (duracao < 30) {
+            horas = 1;
+        } else {
+            if (minResto >= 30) {
+                horas++;
+            }
+        }
+
+        if (horas <= 2) {
+            preco = horas * 5;
+        } else if (horas <= 4) {
+            preco = (2 * 5) + (horas - 2) * 7.5;
+        } else {
+            preco = (2 * 5) + (2 * 7.5) + (horas - 4) * 10;
+        }
+
+        System.out.println("tempo de estacionamento: " + horas + " hora(s)");
+        System.out.printf("preço cobrado = R$%.2f\n", preco);
 
         sc.close();
     }
